@@ -17,30 +17,25 @@ To create a procedure using PL/SQL.
 
 ## Program:
 ```
-CREATE TABLE ep2(
-       empid NUMBER,
-       empname VARCHAR(10),
-       dept VARCHAR(10),
-       salary NUMBER
-       );
-       CREATE OR REPLACE PROCEDURE emp_data AS
-       BEGIN
-       INSERT INTO ep2(empid,empname,dept,salary)
-       values(1,'John','MD',10000000);
-       INSERT INTO ep2(empid,empname,dept,salary)
-       values(2,'Sam','HR',5000000);
-       INSERT INTO ep2(empid,empname,dept,salary)
-       values(3,'Advik','Finance',200000);
-       COMMIT;
-       FOR emp_rec IN (SELECT * FROM ep1)LOOP
-       DBMS_OUTPUT.PUT_LINE('EMPLOYEE ID:'||emp_rec.empid||',EMPLOYEE NAME:'|| emp_rec.empname||
-       ',DEPARTMENT:'||emp_rec.dept||',SALARY:'||emp_rec.salary);
-       END LOOP;
-       END;
-       /
+CREATE TABLE employee (empid INT PRIMARY KEY,empname VARCHAR(10),
+dept VARCHAR(10),salary DECIMAL(10, 2));
+
+DELIMITER //
+CREATE PROCEDURE insert_employee_data(IN p_empid INT,IN p_empname VARCHAR(10),
+IN p_dept VARCHAR(10),IN p_salary DECIMAL(10, 2))
+BEGIN
+  INSERT INTO employee (empid, empname, dept, salary)
+VALUES (p_empid, p_empname, p_dept, p_salary);
+END //
+DELIMITER ;
+
+CALL insert_employee_data(1, 'nirosha', 'HR', 70000.00);
+CALL insert_employee_data(2, 'Divya', 'TL', 40000.00);
+
+ select * from employee;
 ```
 ## Output:
-![image](https://github.com/Niroshassithanathan/Ex-No-4-Creating-Procedures-using-PL-SQL/assets/121418437/c98febf2-53f1-4873-83f4-8600b4dae0c8)
+![image](https://github.com/Niroshassithanathan/Ex-No-4-Creating-Procedures-using-PL-SQL/assets/121418437/5fa0f5f4-4c7b-4eb6-bdce-87958cd6ef2f)
 
 ## Result:
 Thus,the output has been succesfully verified.
