@@ -30,7 +30,7 @@ END //
 DELIMITER ;
 
 CALL insert_employee_data(1, 'nirosha', 'HR', 70000.00);
-CALL insert_employee_data(2, 'Divya', 'TL', 40000.00);
+CALL insert_employee_data(2, 'balu', 'TL', 50000.00);
 
  select * from employee;
 ```
